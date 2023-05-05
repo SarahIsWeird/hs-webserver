@@ -1,0 +1,40 @@
+cabal-version:      2.4
+name:               hs-webserver
+version:            0.1.0.0
+synopsis:           A small and naive web server written in Haskell.
+license:            WTFPL
+author:             SarahIsWeird
+maintainer:         morningcrafter0603@gmail.com
+extra-source-files: CHANGELOG.md
+
+common common-settings
+    default-language: Haskell2010
+    ghc-options:
+        -Wall
+    build-depends:
+        base ^>=4.16.4.0,
+        text,
+        network,
+        bytestring,
+        case-insensitive,
+        regex-tdfa,
+        containers,
+
+library
+    import:           common-settings
+    hs-source-dirs:   src
+    exposed-modules:
+        WebServer
+            WebServer.Tcp
+            WebServer.Http
+                WebServer.Http.Request
+                WebServer.Http.Response
+                WebServer.Http.StatusCodes
+                WebServer.Http.Types
+
+executable hs-webserver
+    import:           common-settings
+    main-is:          Main.hs
+    build-depends:
+        hs-webserver,
+    hs-source-dirs:   app
